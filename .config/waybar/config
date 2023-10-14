@@ -1,0 +1,104 @@
+{
+	"spacing": 0,
+	"layer": "top",
+	"margin-top": 5,
+	"margin-left": 10,
+	"margin-right": 10,
+
+	"modules-left": ["custom/block","custom/menu","custom/block","hyprland/workspaces","custom/block"],
+	"modules-center": ["clock"],
+	"modules-right": ["custom/block","pulseaudio","custom/block","network","custom/block","battery","custom/block","custom/power","custom/block"
+],
+	"custom/block": {
+		"format": " ⋮ "
+	},
+
+	"custom/menu": {
+		"format": "{icon}",
+		"format-icons": {
+			"default": " "
+		},
+		"on-click": "$HOME/.config/waybar/scripts/menu/launcher.sh"
+	},
+
+	"custom/power": {
+		"format": "{icon}",
+		"format-icons": {
+			"default": "󰐥"
+		},
+		"on-click": "$HOME/.config/waybar/scripts/power/powermenu.sh"
+	},
+
+	"backlight": {
+		"format": "{icon} {percent}%",
+		"format-icons": ["","","","","","",""]
+	},
+
+	"clock": {
+		"format": "  {:%H:%M}",
+		"tooltip": "true",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "  {:%d/%m}"
+	},
+
+	"battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format":"{icon}  {capacity}%",
+        "format-charging": "{capacity}% 󰉁",
+        "format-plugged": "{capacity}%  ",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "]
+	},
+
+	"network": {
+		"interval": 5,
+		"format-wifi": "   {essid}",
+		"format-ethernet": "󰖈  {ipaddr}/{cidr}",
+		"format-linked": "󰖟 {ifname} (No IP)",
+		"format-disconnected": "󰕑  Disconnected",
+		"format-disabled": "󰜺  Disabled",
+		"format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
+		"tooltip-format": "  {ifname} via {gwaddr}",
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+        	"format-muted": "󰝟 ",
+		"format-icons": {
+			"default": ["󰕿 ", "󰖀 ", "󰕾 "]
+		},
+	"on-click": "bash ~/.scripts/volume mute",
+    "on-scroll-up": "bash ~/.scripts/volume up",
+    "on-scroll-down": "bash ~/.scripts/volume down",
+    "scroll-step": 5,
+		"on-click-right": "pavucontrol"
+  },
+
+
+	"hyprland/workspaces": {
+		"active-only": false,
+		"all-outputs": true,
+		"disable-scroll": false,
+		"on-scroll-up": "hyprctl dispatch workspace -1",
+		"on-scroll-down": "hyprctl dispatch workspace +1",
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+			"1": " ",
+			"2": " ",
+			"3": " ",
+			"4": " ",
+			"5": "󱏦",
+			"urgent": "",
+//			"active": "",
+			"default": "󰘔",
+		"sort-by-number": true
+		},
+	}
+}
